@@ -75,7 +75,7 @@ const { allCities } = storeToRefs(cityStore)
 // 目的: 获取选中标签后的数据
 // 1.获取正确的key: 将tabs中绑定的tabAction正确绑定
 // 2.根据key从allCities获取数据, 默认直接获取的数据不是响应式的, 所以必须包裹computed
-const currentGroup = computed(() => allCities.value[tabActive.value])
+// const currentGroup = computed(() => allCities.value[tabActive.value])
 
 </script>
 
@@ -92,7 +92,12 @@ const currentGroup = computed(() => allCities.value[tabActive.value])
   //   margin-top: 98px;
   // }
 
-  // 局部滚动
+  .top {
+    position: relative;
+    z-index: 9;
+  }
+
+  // 布局滚动
   .content {
     height: calc(100vh - 98px);
     overflow-y: auto;
