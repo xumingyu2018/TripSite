@@ -92,7 +92,7 @@ const currentGroup = computed(() => allCities.value[tabActive.value])
   // 局部滚动
   .content {
     height: calc(100vh - 98px);
-    overflow: auto;
+    overflow-y: auto;
   }
 }
 </style>

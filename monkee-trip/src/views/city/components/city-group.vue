@@ -1,6 +1,15 @@
 <template>
   <div class="city-group">
-    <template v-for="(group, index) in groupData?.cities" :key="index">
+    <van-index-bar>
+      <template v-for="(group, index) in groupData?.cities" :key="index">
+        <van-index-anchor :index="group.group" />
+        <template v-for="(city, indey) in group.cities" :key="indey">
+          <van-cell :title="city.cityName" />
+        </template>
+    </template>
+    </van-index-bar>
+
+    <!-- <template v-for="(group, index) in groupData?.cities" :key="index">
       <div class="group-item">
         <h2 class="title">分组：{{ group.group }}</h2>
         <div class="list">
@@ -9,7 +18,7 @@
           </template>
         </div>
       </div>
-    </template>
+    </template> -->
   </div>
 </template>
 
@@ -25,5 +34,23 @@ const props = defineProps({
 </script>
 
 <style lang="less" scoped>
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding: 10px;
+  padding-right: 25px;
 
+  .city {
+    width: 70px;
+    height: 28px;
+    border-radius: 14px;
+    font-size: 12px;
+    color: #000;
+    text-align: center;
+    line-height: 28px;
+    background-color: #fff4ec;
+    margin: 6px 0;
+  }
+}
 </style>
