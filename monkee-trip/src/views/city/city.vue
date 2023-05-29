@@ -22,7 +22,10 @@
 
     <div class="content">
       <!-- group-data父传子 -->
-      <city-group :group-data="currentGroup"/>
+      <!-- 使用v-show优化渲染 -->
+      <template v-for="(value, key, index) in allCities" :key="key">
+        <city-group v-show="tabActive === key" :group-data="value"/>      
+      </template>
     </div>
   </div>
 </template>
@@ -88,7 +91,7 @@ const currentGroup = computed(() => allCities.value[tabActive.value])
   // .content {
   //   margin-top: 98px;
   // }
-  
+
   // 局部滚动
   .content {
     height: calc(100vh - 98px);
