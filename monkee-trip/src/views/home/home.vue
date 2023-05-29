@@ -4,12 +4,13 @@
     <div class="banner">
       <img src="@/assets/img/home/banner.webp" alt="">
     </div>
+    <home-search-box/>
   </div>
 </template>
 
 <script setup>
 import homeNavBar from './components/home-nav-bar.vue';
-
+import homeSearchBox from './components/home-search-box.vue';
 
 </script>
 
