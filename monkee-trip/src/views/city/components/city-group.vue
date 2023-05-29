@@ -41,7 +41,10 @@ const props = defineProps({
 
 // 城市列表索引动态映射
 const indexList = computed(() => {
-  return props.groupData.cities.map(item => item.group)
+  const list = props.groupData.cities.map(item => item.group)
+  // 在list最前面插入一个#，给热门添加索引
+  list.unshift("#")
+  return list
 })
 
 </script>
