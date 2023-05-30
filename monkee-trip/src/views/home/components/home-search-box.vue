@@ -49,19 +49,20 @@
 
 <script setup>
 import useCityStore from '@/stores/modules/city';
+import useHomeStore from '@/stores/modules/home';
 import { storeToRefs } from 'pinia';
 import { ref } from 'vue';
 import { useRouter } from 'vue-router'
 import { formatMonthDay, getDiffDays } from '@/utils/format_date';
 
 const router = useRouter()
-// 定义props
-const props = defineProps({
-  hotSuggests: {
-    type: Array,
-    default: () => []
-  }
-})
+// 定义props(使用了pinia就不需要父传子，直接从pinia中获取数据)
+// const props = defineProps({
+//   hotSuggests: {
+//     type: Array,
+//     default: () => []
+//   }
+// })
 
 // 位置
 const cityClick = () => {
@@ -82,6 +83,7 @@ const positionClick = () => {
 const cityStore = useCityStore()
 const { currentCity } = storeToRefs(cityStore)
 
+
 // 日期范围处理
 const nowDate = new Date()
 const newDate = new Date().setDate(nowDate.getDate() + 1)
@@ -89,7 +91,6 @@ const newDate = new Date().setDate(nowDate.getDate() + 1)
 const startDate = ref(formatMonthDay(nowDate))
 const endDate = ref(formatMonthDay(newDate))
 const stayCount = ref(getDiffDays(nowDate, newDate))
-
 // 日历组件参数
 const showCalendar = ref(false)
 const onConfirm = (value) => {
@@ -104,8 +105,9 @@ const onConfirm = (value) => {
   showCalendar.value = false
 }
 
-
-
+// 热门建议
+const homeStore = useHomeStore()
+const { hotSuggests } = storeToRefs(homeStore)
 
 </script>
 

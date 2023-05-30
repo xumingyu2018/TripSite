@@ -9,17 +9,22 @@
 </template>
 
 <script setup>
+import useHomeStore from '@/stores/modules/home';
 import homeNavBar from './components/home-nav-bar.vue';
 import homeSearchBox from './components/home-search-box.vue';
 import myRequest from '@/services/request/index';
 import { ref } from 'vue';
 
-const hotSuggests = ref([])
-myRequest.get({
-  url: '/home/hotSuggests'
-}).then(res => {
-  hotSuggests.value = res.data
-})
+// 热门建议
+// const hotSuggests = ref([])
+// 发送网络请求
+// myRequest.get({
+//   url: '/home/hotSuggests'
+// }).then(res => {
+//   hotSuggests.value = res.data
+// })
+const homeStore = useHomeStore()
+homeStore.fetchHotSuggestData()
 
 </script>
 
