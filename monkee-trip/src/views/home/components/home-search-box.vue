@@ -16,7 +16,7 @@
           <span class="tip">入住</span>
           <span class="time">{{ startDate }}</span>
         </div>
-        <div class="stay">共一晚</div>
+        <div class="stay">共{{ stayCount }}晚</div>
         <div class="end">
           <div class="date">
             <span class="tip">离店</span>
@@ -25,6 +25,7 @@
         </div>
       </div>
     </div>
+    <!-- 日历组件 -->
     <van-calendar v-model:show="showCalendar" type="range" :round="false" @confirm="onConfirm" />
 
   </div>
@@ -35,7 +36,7 @@ import useCityStore from '@/stores/modules/city';
 import { storeToRefs } from 'pinia';
 import { ref } from 'vue';
 import { useRouter } from 'vue-router'
-import { formatMonthDay } from '@/utils/format_date';
+import { formatMonthDay, getDiffDays } from '@/utils/format_date';
 
 const router = useRouter()
 
@@ -60,16 +61,21 @@ const { currentCity } = storeToRefs(cityStore)
 
 // 日期范围处理
 const nowDate = new Date()
-const newDate =nowDate.setDate(nowDate.getDate() + 1)
+const newDate = new Date().setDate(nowDate.getDate() + 1)
 
 const startDate = ref(formatMonthDay(nowDate))
 const endDate = ref(formatMonthDay(newDate))
+const stayCount = ref(getDiffDays(nowDate, newDate))
 
+// 日历组件参数
 const showCalendar = ref(false)
 const onConfirm = (value) => {
   // 1.设置日期范围
-  startDate.value = formatMonthDay(value[0])
-  endDate.value = formatMonthDay(value[1])
+  const selectStartDate = value[0]
+  const selectEndDate = value[1]
+  startDate.value = formatMonthDay(selectStartDate)
+  endDate.value = formatMonthDay(selectEndDate)
+  stayCount.value = getDiffDays(selectStartDate, selectEndDate)
 
   // 2.确定后隐藏日期
   showCalendar.value = false
