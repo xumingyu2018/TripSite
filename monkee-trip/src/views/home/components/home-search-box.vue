@@ -1,10 +1,28 @@
 <template>
   <div class="search-box">
+    <!-- 位置信息 -->
     <div class="location bottom-gray-line ">
       <div class="city" @click="cityClick">{{ currentCity.cityName }}</div>
       <div class="position" @click="positionClick">
         <span class="text">我的位置</span>
         <img src="@/assets/img/home/icon_location.png" alt="">
+      </div>
+    </div>
+
+    <!-- 日期范围 -->
+    <div class="section date-range bottom-gray-line">
+      <div class="start">
+        <div class="date">
+          <span class="tip">入住</span>
+          <span class="time">{{ startDate }}</span>
+        </div>
+        <div class="stay">共一晚</div>
+        <div class="end">
+          <div class="date">
+            <span class="tip">离店</span>
+            <span class="time">{{ endDate }}</span>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -13,14 +31,15 @@
 <script setup>
 import useCityStore from '@/stores/modules/city';
 import { storeToRefs } from 'pinia';
+import { ref } from 'vue';
 import { useRouter } from 'vue-router'
 
 const router = useRouter()
 
+// 位置
 const cityClick = () => {
   router.push('/city')
 }
-
 const positionClick = () => {
   navigator.geolocation.getCurrentPosition(res => {
     console.log("获取位置成功", res);
@@ -32,9 +51,13 @@ const positionClick = () => {
     maximumAge: 0
   })
 }
-
+// 当前城市
 const cityStore = useCityStore()
 const { currentCity } = storeToRefs(cityStore)
+
+// 日期范围处理
+const startDate = ref("5月30日")
+const endDate = ref("5月31日")
 </script>
 
 <style lang="less" scoped>
@@ -42,6 +65,7 @@ const { currentCity } = storeToRefs(cityStore)
   --van-calendar-popup-height: 100%;
 }
 
+// 位置信息样式
 .location {
   display: flex;
   align-items: center;
@@ -71,6 +95,52 @@ const { currentCity } = storeToRefs(cityStore)
       width: 18px;
       height: 18px;
     }
+  }
+}
+
+// 日期范围样式
+.section {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  padding: 0 20px;
+  color: #999;
+  height: 44px;
+
+  .start {
+    flex: 1;
+    display: flex;
+    height: 44px;
+    align-items: center;
+  }
+
+  .end {
+    min-width: 30%;
+    padding-left: 20px;
+  }
+  .date {
+    display: flex;
+    flex-direction: column;
+    .tip {
+      font-size: 12px;
+      color: #999;
+    }
+    .time {
+      margin-top: 3px;
+      color: #333;
+      font-size: 15px;
+      font-weight: 500;
+    }
+  }
+}
+
+.date-range {
+  height: 44px;
+  .stay {
+    flex: 1;
+    text-align: center;
+    font-size: 12px;
+    color: #666;
   }
 }
 
