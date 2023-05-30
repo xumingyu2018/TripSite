@@ -10,7 +10,7 @@
     </div>
 
     <!-- 日期范围 -->
-    <div class="section date-range bottom-gray-line">
+    <div class="section date-range bottom-gray-line" @click="showCalendar =true">
       <div class="start">
         <div class="date">
           <span class="tip">入住</span>
@@ -25,6 +25,8 @@
         </div>
       </div>
     </div>
+    <van-calendar v-model:show="showCalendar" type="range" :round="false" @confirm="onConfirm" />
+
   </div>
 </template>
 
@@ -33,6 +35,7 @@ import useCityStore from '@/stores/modules/city';
 import { storeToRefs } from 'pinia';
 import { ref } from 'vue';
 import { useRouter } from 'vue-router'
+import { formatMonthDay } from '@/utils/format_date';
 
 const router = useRouter()
 
@@ -56,8 +59,21 @@ const cityStore = useCityStore()
 const { currentCity } = storeToRefs(cityStore)
 
 // 日期范围处理
-const startDate = ref("5月30日")
-const endDate = ref("5月31日")
+const nowDate = new Date()
+const newDate =nowDate.setDate(nowDate.getDate() + 1)
+
+const startDate = ref(formatMonthDay(nowDate))
+const endDate = ref(formatMonthDay(newDate))
+
+const showCalendar = ref(false)
+const onConfirm = (value) => {
+  // 1.设置日期范围
+  startDate.value = formatMonthDay(value[0])
+  endDate.value = formatMonthDay(value[1])
+
+  // 2.确定后隐藏日期
+  showCalendar.value = false
+}
 </script>
 
 <style lang="less" scoped>
