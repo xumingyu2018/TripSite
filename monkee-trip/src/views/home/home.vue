@@ -4,7 +4,8 @@
     <div class="banner">
       <img src="@/assets/img/home/banner.webp" alt="">
     </div>
-    <home-search-box :hot-suggests="hotSuggests"/>
+    <home-search-box/>
+    <!-- <home-search-box :hot-suggests="hotSuggests"/> -->
   </div>
 </template>
 

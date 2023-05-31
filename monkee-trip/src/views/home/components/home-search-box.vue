@@ -44,6 +44,11 @@
         </div>
       </template>
     </div>
+
+    <!-- 搜索按钮 -->
+    <div class="section search-btn">
+      <div class="btn" @click="searchBtnClick">开始搜索</div>
+    </div>
   </div>
 </template>
 
@@ -109,6 +114,18 @@ const onConfirm = (value) => {
 const homeStore = useHomeStore()
 const { hotSuggests } = storeToRefs(homeStore)
 
+// 监听搜索事件
+const searchBtnClick = () => {
+  router.push({
+    path: "/search",
+    query: {
+      startDate: startDate.value,
+      endDate: endDate.value,
+      currentCity: currentCity.value.cityName
+    }
+  })
+}
+
 </script>
 
 <style lang="less" scoped>
@@ -116,7 +133,7 @@ const { hotSuggests } = storeToRefs(homeStore)
   --van-calendar-popup-height: 100%;
 }
 
-// 位置信息样式
+/* 位置信息样式 */
 .location {
   display: flex;
   align-items: center;
@@ -149,7 +166,7 @@ const { hotSuggests } = storeToRefs(homeStore)
   }
 }
 
-// 日期范围样式
+/* 日期范围样式 */
 .section {
   display: flex;
   flex-wrap: wrap;
@@ -184,7 +201,6 @@ const { hotSuggests } = storeToRefs(homeStore)
     }
   }
 }
-
 .date-range {
   height: 44px;
   .stay {
@@ -201,8 +217,10 @@ const { hotSuggests } = storeToRefs(homeStore)
   }
 }
 
+// 热门建议样式
 .hot-suggests {
   margin: 10px 0;
+  /* section有高度，所以这里自动计算高度 */
   height: auto;
 
   .item {
@@ -211,6 +229,22 @@ const { hotSuggests } = storeToRefs(homeStore)
     border-radius: 14px;
     font-size: 12px;
     line-height: 1;
+  }
+}
+
+// 搜索按钮样式
+.search-btn {
+  .btn {
+    width: 342px;
+    height: 38px;
+    max-height: 50px;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 38px;
+    text-align: center;
+    border-radius: 20px;
+    color:#fff;
+    background-image: var(--theme-linear-gradient);
   }
 }
 
