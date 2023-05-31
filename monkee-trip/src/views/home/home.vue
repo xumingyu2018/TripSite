@@ -5,6 +5,7 @@
       <img src="@/assets/img/home/banner.webp" alt="">
     </div>
     <home-search-box/>
+    <home-categories/>
     <!-- <home-search-box :hot-suggests="hotSuggests"/> -->
   </div>
 </template>
@@ -13,6 +14,8 @@
 import useHomeStore from '@/stores/modules/home';
 import homeNavBar from './components/home-nav-bar.vue';
 import homeSearchBox from './components/home-search-box.vue';
+import homeCategories from './components/home-categories.vue';
+
 import myRequest from '@/services/request/index';
 import { ref } from 'vue';
 
@@ -26,6 +29,7 @@ import { ref } from 'vue';
 // })
 const homeStore = useHomeStore()
 homeStore.fetchHotSuggestData()
+homeStore.fetchCategoriesData()
 
 </script>
 
