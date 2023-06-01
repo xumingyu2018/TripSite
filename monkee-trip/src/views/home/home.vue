@@ -6,6 +6,7 @@
     </div>
     <home-search-box/>
     <home-categories/>
+    <home-content/>
     <!-- <home-search-box :hot-suggests="hotSuggests"/> -->
   </div>
 </template>
@@ -15,6 +16,7 @@ import useHomeStore from '@/stores/modules/home';
 import homeNavBar from './components/home-nav-bar.vue';
 import homeSearchBox from './components/home-search-box.vue';
 import homeCategories from './components/home-categories.vue';
+import homeContent from './components/home-content.vue';
 
 import myRequest from '@/services/request/index';
 import { ref } from 'vue';
@@ -34,9 +36,17 @@ homeStore.fetchCategoriesData()
 </script>
 
 <style lang="less" scoped>
+.home {
+  height: 100vh;
+  overflow-y: auto;
+  box-sizing: border-box;
+  padding-bottom: 60px;
+}
 .banner {
   img {
     width: 100%;
   }
 }
+
+
 </style>
