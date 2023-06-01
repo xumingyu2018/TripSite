@@ -32,6 +32,7 @@ import { ref } from 'vue';
 const homeStore = useHomeStore()
 homeStore.fetchHotSuggestData()
 homeStore.fetchCategoriesData()
+homeStore.fetchHouselistData()
 
 </script>
 
