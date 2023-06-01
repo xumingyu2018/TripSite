@@ -7,6 +7,7 @@
     <home-search-box/>
     <home-categories/>
     <home-content/>
+    <button @click="moreBtnClick">加载更多</button>
     <!-- <home-search-box :hot-suggests="hotSuggests"/> -->
   </div>
 </template>
@@ -32,7 +33,14 @@ import { ref } from 'vue';
 const homeStore = useHomeStore()
 homeStore.fetchHotSuggestData()
 homeStore.fetchCategoriesData()
+// let currentPage = 1
 homeStore.fetchHouselistData()
+
+// 默认加载更多按钮
+const moreBtnClick = () => {
+  // currentPage++;
+  homeStore.fetchHouselistData()
+}
 
 </script>
 
