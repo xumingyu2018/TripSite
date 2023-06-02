@@ -1,4 +1,4 @@
-import { getHomeCategories, getHomeHotSuggests, getHomeHouselist } from "@/services/modules/home";
+import { getHomeCategories, getHomeHotSuggests, getHomeHouseList } from "@/services/modules/home";
 import { defineStore } from "pinia";
 
 const useHomeStore = defineStore("home", {
@@ -7,7 +7,7 @@ const useHomeStore = defineStore("home", {
     categories: [],
 
     currentPage: 1,
-    houselist: []
+    houseList: []
   }),
   actions: {
     async fetchHotSuggestData() {
@@ -18,10 +18,10 @@ const useHomeStore = defineStore("home", {
       const res = await getHomeCategories()
       this.categories = res.data
     },
-    async fetchHouselistData() {
-      const res = await getHomeHouselist(this.currentPage)
+    async fetchHouseListData() {
+      const res = await getHomeHouseList(this.currentPage)
       // 将数据追加到原有数据后面（加载更多）
-      this.houselist.push(...res.data)
+      this.houseList.push(...res.data)
       this.currentPage++
     }
   }

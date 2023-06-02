@@ -34,12 +34,12 @@ const homeStore = useHomeStore()
 homeStore.fetchHotSuggestData()
 homeStore.fetchCategoriesData()
 // let currentPage = 1
-homeStore.fetchHouselistData()
+homeStore.fetchHouseListData()
 
 // 默认加载更多按钮
 const moreBtnClick = () => {
   // currentPage++;
-  homeStore.fetchHouselistData()
+  homeStore.fetchHouseListData()
 }
 
 </script>
