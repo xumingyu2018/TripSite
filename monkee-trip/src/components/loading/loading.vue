@@ -1,5 +1,5 @@
 <template>
-  <div class="loading" v-show="mainStore.isLoading">
+  <div class="loading" v-show="mainStore.isLoading" @click="loadingClick">
     <div class="bg">
       <img src="@/assets/img/home/full-screen-loading.gif" alt="">
     </div>
@@ -10,6 +10,10 @@
 import { useMainStore } from '@/stores/modules/main';
 
 const mainStore = useMainStore()
+// 点击页面时关闭loading
+const loadingClick = () => {
+  mainStore.isLoading = false
+}
 </script>
 
 <style lang="less" scoped>
