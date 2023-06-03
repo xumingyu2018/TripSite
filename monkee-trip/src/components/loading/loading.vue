@@ -1,5 +1,5 @@
 <template>
-  <div class="loading">
+  <div class="loading" v-show="mainStore.isLoading">
     <div class="bg">
       <img src="@/assets/img/home/full-screen-loading.gif" alt="">
     </div>
@@ -7,7 +7,9 @@
 </template>
 
 <script setup>
+import { useMainStore } from '@/stores/modules/main';
 
+const mainStore = useMainStore()
 </script>
 
 <style lang="less" scoped>
@@ -22,7 +24,7 @@
   align-items: center;
   z-index: 999;
 
-  background-color: rgba(0, 0, 0, .2);
+  background-color: rgba(0, 0, 0, .3);
 
   .bg {
     display: flex;
