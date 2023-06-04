@@ -10,6 +10,7 @@
       </slot>
     </div>
 
+    <!-- 无值不显示 -->
     <div class="footer" v-if="moreText.length">
       <span class="more">{{ moreText }}</span>
       <van-icon name="arrow"/>
@@ -26,7 +27,7 @@ defineProps({
   },
   moreText: {
     type: String,
-    default: '默认更多'
+    default: ''
   }
 })
 

@@ -5,6 +5,7 @@
       <detail-swipe :swipe-data="mainPart.topModule.housePicture.housePics"/>
       <detail-infos :top-infos="mainPart.topModule"/>
       <detail-facility :house-facility="mainPart.dynamicModule.facilityModule.houseFacility"/>
+      <detail-landlord :landlord="mainPart.dynamicModule.landlordModule"></detail-landlord>
     </div>
   </div>
 </template>
@@ -13,6 +14,7 @@
 import DetailSwipe from "./components/detail_01-swipe.vue"
 import DetailInfos from "./components/detail_02-infos.vue";
 import DetailFacility from "./components/detail_03-facility.vue";
+import DetailLandlord from "./components/detail_04-landlord.vue";
 
 import { getDetailInfos } from '@/services';
 import { useRoute, useRouter } from 'vue-router';
