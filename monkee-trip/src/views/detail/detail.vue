@@ -9,6 +9,7 @@
       <detail-comment :comment="mainPart.dynamicModule.commentModule"/>
       <detail-notice :order-rules="mainPart.dynamicModule.rulesModule.orderRules"/>
       <detail-map :position="mainPart.dynamicModule.positionModule"/>
+      <detail-intro :priceIntro="mainPart.introductionModule"/>
     </div>
   </div>
 </template>
@@ -21,6 +22,7 @@ import DetailLandlord from "./components/detail_04-landlord.vue";
 import DetailComment from "./components/detail_05-comment.vue";
 import DetailNotice from "./components/detail_06-notice.vue";
 import DetailMap from "./components/detail_07-map.vue";
+import DetailIntro from "./components/detail_08-intro.vue";
 
 import { getDetailInfos } from '@/services';
 import { useRoute, useRouter } from 'vue-router';
