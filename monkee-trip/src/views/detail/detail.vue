@@ -8,6 +8,7 @@
       <detail-landlord :landlord="mainPart.dynamicModule.landlordModule"></detail-landlord>
       <detail-comment :comment="mainPart.dynamicModule.commentModule"/>
       <detail-notice :order-rules="mainPart.dynamicModule.rulesModule.orderRules"/>
+      <detail-map :position="mainPart.dynamicModule.positionModule"/>
     </div>
   </div>
 </template>
@@ -19,6 +20,7 @@ import DetailFacility from "./components/detail_03-facility.vue";
 import DetailLandlord from "./components/detail_04-landlord.vue";
 import DetailComment from "./components/detail_05-comment.vue";
 import DetailNotice from "./components/detail_06-notice.vue";
+import DetailMap from "./components/detail_07-map.vue";
 
 import { getDetailInfos } from '@/services';
 import { useRoute, useRouter } from 'vue-router';
