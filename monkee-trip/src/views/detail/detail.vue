@@ -3,12 +3,15 @@
     <van-nav-bar title="房屋详情" left-text="旅途" left-arrow  @click-left="onClickLeft"/>
     <div class="main" v-if="mainPart">
       <detail-swipe :swipe-data="mainPart.topModule.housePicture.housePics"/>
+      <detail-infos :top-infos="mainPart.topModule"/>
     </div>
   </div>
 </template>
 
 <script setup>
-import DetailSwipe from "./components/detail-swipe.vue"
+import DetailSwipe from "./components/detail_01-swipe.vue"
+import DetailInfos from "./components/detail_02-infos.vue";
+
 import { getDetailInfos } from '@/services';
 import { useRoute, useRouter } from 'vue-router';
 import { computed, ref } from "vue";
