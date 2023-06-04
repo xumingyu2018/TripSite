@@ -11,6 +11,11 @@
       <detail-map :position="mainPart.dynamicModule.positionModule"/>
       <detail-intro :priceIntro="mainPart.introductionModule"/>
     </div>
+
+    <div class="footer">
+      <img src="@/assets/img/detail/icon_ensure.png" alt="">
+      <div class="text">Nevermore毓提供技术支持</div>
+    </div>
   </div>
 </template>
 
@@ -47,4 +52,20 @@ const onClickLeft = () => {
 
 <style lang="less" scoped>
 
+.footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 120px;
+
+  img {
+    width: 123px;
+  }
+  .text {
+    margin-top: 12px;
+    font-size: 12px;
+    color: #7688a7;
+  }
+}
 </style>
