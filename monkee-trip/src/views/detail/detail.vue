@@ -6,6 +6,7 @@
       :titles="names" 
       @tabItemClick="tabClick" 
       class="tabs"
+      ref="tabControlRef"
     />
     <van-nav-bar title="房屋详情" left-text="旅途" left-arrow  @click-left="onClickLeft"/>
     <div class="main" v-if="mainPart">
@@ -39,7 +40,7 @@ import TabControl from "@/components/tab-control/tab-control.vue";
 
 import { getDetailInfos } from '@/services';
 import { useRoute, useRouter } from 'vue-router';
-import { computed, ref } from "vue";
+import { computed, ref, watch } from "vue";
 import useScroll from "@/hooks/useScroll";
 
 const router = useRouter()
@@ -87,6 +88,7 @@ const showTabControl = computed(() => {
 // }
 
 // tabControl标签页锚点定位效果（方法二--name属性动态获取标签页）
+// sectionEls = { "描述", el; "设施", el; ..."}
 const sectionEls = ref({})
 const names = computed(() => {
   return Object.keys(sectionEls.value)
@@ -112,6 +114,26 @@ const tabClick = (index) => {
     behavior: 'smooth'
   })
 }
+
+// 页面滚动，滚动时匹配对应的tabControl的index
+const tabControlRef = ref()
+watch(scrollTop, (newValue) => {
+  // 1.获取所有区域的offsetTops
+  const els = Object.values(sectionEls.value)
+  const values = els.map(el => el.offsetTop)
+
+  // 2.根据newValue，匹配对应的index
+  let index = values.length - 1
+  for(let i= 0; i < values.length; i++){
+    if(values[i] > newValue + 44) {
+      index = i - 1
+      break
+    }
+  }
+
+  // 3.将index传入tabControl组件
+  tabControlRef.value?.setCurrentIndex(index)
+})
 
 </script>
 
