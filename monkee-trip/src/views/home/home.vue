@@ -1,5 +1,5 @@
 <template>
-  <div class="home">
+  <div class="home" ref="homeRef">
     <home-nav-bar/>
     <div class="banner">
       <img src="@/assets/img/home/banner.webp" alt="">
@@ -15,6 +15,10 @@
   </div>
 </template>
 
+<script>
+  // vue2语法使keep-alive绑定name属性 
+  export default { name: 'home'}
+</script>
 <script setup>
 import useHomeStore from '@/stores/modules/home';
 import homeNavBar from './components/home-nav-bar.vue';
@@ -25,7 +29,7 @@ import searchBar from '@/components/search-bar/search-bar.vue';
 
 import useScroll from '@/hooks/useScroll';
 import myRequest from '@/services/request/index';
-import { computed, watch } from 'vue';
+import { computed, onActivated, ref, watch } from 'vue';
 
 // 热门建议
 // const hotSuggests = ref([])
@@ -47,7 +51,8 @@ homeStore.fetchHouseListData()
 // }
 
 // 监听是否到底部，若到底部加载更多
-const { isReachBottom, scrollTop } = useScroll()
+const homeRef = ref()
+const { isReachBottom, scrollTop } = useScroll(homeRef)
 // 监听变化后执行js逻辑用watch
 watch(isReachBottom, (newValue) => {
   if (newValue) {
@@ -68,13 +73,20 @@ const isShowSearchBar = computed(() => {
   return scrollTop.value >= 360
 })
 
+// 跳转回home时, 保留原来的位置
+onActivated(() => {
+  homeRef.value?.scrollTo({
+    top: scrollTop.value
+  })
+})
+
 </script>
 
 <style lang="less" scoped>
 .home {
-  // height: 100vh;
-  // overflow-y: auto;
-  // box-sizing: border-box;
+  height: 100vh;
+  overflow-y: auto;
+  box-sizing: border-box;
   padding-bottom: 60px;
 }
 
