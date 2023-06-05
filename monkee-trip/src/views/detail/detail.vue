@@ -1,16 +1,21 @@
 <template>
   <div class="detail top-page" ref="detailRef">
     <!-- 这里的tabItemClick是由子组件定义好传过来的 -->
-    <tab-control v-if="showTabControl" :titles="['描述', '设施', '房东', '评论', '须知' ]" @tabItemClick="tabClick" class="tabs"/>
+    <tab-control 
+      v-if="showTabControl" 
+      :titles="names" 
+      @tabItemClick="tabClick" 
+      class="tabs"
+    />
     <van-nav-bar title="房屋详情" left-text="旅途" left-arrow  @click-left="onClickLeft"/>
     <div class="main" v-if="mainPart">
       <detail-swipe :swipe-data="mainPart.topModule.housePicture.housePics"/>
-      <detail-infos :ref="getSectionRef" :top-infos="mainPart.topModule"/>
-      <detail-facility :ref="getSectionRef" :house-facility="mainPart.dynamicModule.facilityModule.houseFacility"/>
-      <detail-landlord :ref="getSectionRef" :landlord="mainPart.dynamicModule.landlordModule"></detail-landlord>
-      <detail-comment :ref="getSectionRef" :comment="mainPart.dynamicModule.commentModule"/>
-      <detail-notice :ref="getSectionRef" :order-rules="mainPart.dynamicModule.rulesModule.orderRules"/>
-      <detail-map :ref="getSectionRef" :position="mainPart.dynamicModule.positionModule"/>
+      <detail-infos name="描述" :ref="getSectionRef" :top-infos="mainPart.topModule"/>
+      <detail-facility name="设施" :ref="getSectionRef" :house-facility="mainPart.dynamicModule.facilityModule.houseFacility"/>
+      <detail-landlord name="房东" :ref="getSectionRef" :landlord="mainPart.dynamicModule.landlordModule"></detail-landlord>
+      <detail-comment name="评论" :ref="getSectionRef" :comment="mainPart.dynamicModule.commentModule"/>
+      <detail-notice name="须知" :ref="getSectionRef" :order-rules="mainPart.dynamicModule.rulesModule.orderRules"/>
+      <detail-map name="周边" :ref="getSectionRef" :position="mainPart.dynamicModule.positionModule"/>
       <detail-intro :priceIntro="mainPart.introductionModule"/>
     </div>
 
@@ -61,16 +66,41 @@ const showTabControl = computed(() => {
   return scrollTop.value >= 300
 })
 
-// tabControl标签页锚点定位效果
-const sectionEls = []
+// tabControl标签页锚点定位效果（方法一）
+// const sectionEls = []
+// const getSectionRef = (value) => {
+//   // 将每个组件的根dom元素存入数组
+//   sectionEls.push(value.$el)
+// }
+// const tabClick = (index) => {
+//   // 获取对应的dom元素距离顶部的距离(每一个dom元素都有一个距离顶部距离的api即offsetTop)
+//   let instance = sectionEls[index].offsetTop
+//   // 除了第一个tab，其他的都要减去44px的高度 
+//   if(index !== 0) {
+//     instance = instance - 44
+//   }
+//   // 滚动到对应的位置
+//   detailRef.value.scrollTo({
+//     top: instance,
+//     behavior: 'smooth'
+//   })
+// }
+
+// tabControl标签页锚点定位效果（方法二--name属性动态获取标签页）
+const sectionEls = ref({})
+const names = computed(() => {
+  return Object.keys(sectionEls.value)
+})
+// key: name属性的值，value: 对应的组件根dom元素
 const getSectionRef = (value) => {
-  // 将每个组件的根dom元素存入数组
-  sectionEls.push(value.$el)
+  const name = value.$el.getAttribute('name')
+  sectionEls.value[name] = value.$el
 }
 const tabClick = (index) => {
-  // 获取对应的dom元素距离顶部的距离(每一个dom元素都有一个距离顶部距离的api即offsetTop)
-  let instance = sectionEls[index].offsetTop
-  // 除了第一个tab，其他的都要减去44px的高度 
+  const key = Object.keys(sectionEls.value)[index]
+  const el = sectionEls.value[key]
+  
+  let instance = el.offsetTop
   if(index !== 0) {
     instance = instance - 44
   }
