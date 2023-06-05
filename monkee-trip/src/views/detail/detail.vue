@@ -1,15 +1,16 @@
 <template>
   <div class="detail top-page" ref="detailRef">
-    <tab-control v-if="showTabControl" :titles="['aaa', 'bbb', 'ccc', 'ddd' ]" class="tabs"/>
+    <!-- 这里的tabItemClick是由子组件定义好传过来的 -->
+    <tab-control v-if="showTabControl" :titles="['描述', '设施', '房东', '评论', '须知' ]" @tabItemClick="tabClick" class="tabs"/>
     <van-nav-bar title="房屋详情" left-text="旅途" left-arrow  @click-left="onClickLeft"/>
     <div class="main" v-if="mainPart">
       <detail-swipe :swipe-data="mainPart.topModule.housePicture.housePics"/>
-      <detail-infos :top-infos="mainPart.topModule"/>
-      <detail-facility :house-facility="mainPart.dynamicModule.facilityModule.houseFacility"/>
-      <detail-landlord :landlord="mainPart.dynamicModule.landlordModule"></detail-landlord>
-      <detail-comment :comment="mainPart.dynamicModule.commentModule"/>
-      <detail-notice :order-rules="mainPart.dynamicModule.rulesModule.orderRules"/>
-      <detail-map :position="mainPart.dynamicModule.positionModule"/>
+      <detail-infos :ref="getSectionRef" :top-infos="mainPart.topModule"/>
+      <detail-facility :ref="getSectionRef" :house-facility="mainPart.dynamicModule.facilityModule.houseFacility"/>
+      <detail-landlord :ref="getSectionRef" :landlord="mainPart.dynamicModule.landlordModule"></detail-landlord>
+      <detail-comment :ref="getSectionRef" :comment="mainPart.dynamicModule.commentModule"/>
+      <detail-notice :ref="getSectionRef" :order-rules="mainPart.dynamicModule.rulesModule.orderRules"/>
+      <detail-map :ref="getSectionRef" :position="mainPart.dynamicModule.positionModule"/>
       <detail-intro :priceIntro="mainPart.introductionModule"/>
     </div>
 
@@ -52,13 +53,33 @@ const onClickLeft = () => {
   router.back()
 }
 
-// tabControll标签页的相关操作
+// tabControl标签页的滚动事件
 const detailRef = ref()
 // 传入参数，监听Dom元素的滚动事件，而不是window
 const { scrollTop } = useScroll(detailRef)
 const showTabControl = computed(() => {
   return scrollTop.value >= 300
 })
+
+// tabControl标签页锚点定位效果
+const sectionEls = []
+const getSectionRef = (value) => {
+  // 将每个组件的根dom元素存入数组
+  sectionEls.push(value.$el)
+}
+const tabClick = (index) => {
+  // 获取对应的dom元素距离顶部的距离(每一个dom元素都有一个距离顶部距离的api即offsetTop)
+  let instance = sectionEls[index].offsetTop
+  // 除了第一个tab，其他的都要减去44px的高度 
+  if(index !== 0) {
+    instance = instance - 44
+  }
+  // 滚动到对应的位置
+  detailRef.value.scrollTo({
+    top: instance,
+    behavior: 'smooth'
+  })
+}
 
 </script>
 
