@@ -93,6 +93,8 @@ const names = computed(() => {
 })
 // key: name属性的值，value: 对应的组件根dom元素
 const getSectionRef = (value) => {
+  // 卸载的时候，将对应的组件根dom元素从对象中删除，此时value为null,value.$el会报错
+  if(!value) return
   const name = value.$el.getAttribute('name')
   sectionEls.value[name] = value.$el
 }
