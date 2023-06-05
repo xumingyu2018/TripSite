@@ -100,17 +100,24 @@ const getSectionRef = (value) => {
   const name = value.$el.getAttribute('name')
   sectionEls.value[name] = value.$el
 }
+// 用于处理滚动时产生的bug
+let isClick = false
+let currentDistance = -1
 const tabClick = (index) => {
   const key = Object.keys(sectionEls.value)[index]
   const el = sectionEls.value[key]
   
-  let instance = el.offsetTop
+  let distance = el.offsetTop
   if(index !== 0) {
-    instance = instance - 44
+    distance = distance - 44
   }
+
+  isClick = true
+  currentDistance = distance
+
   // 滚动到对应的位置
   detailRef.value.scrollTo({
-    top: instance,
+    top: distance,
     behavior: 'smooth'
   })
 }
@@ -118,6 +125,12 @@ const tabClick = (index) => {
 // 页面滚动，滚动时匹配对应的tabControl的index
 const tabControlRef = ref()
 watch(scrollTop, (newValue) => {
+  // 用于处理滚动时产生的bug
+  if (newValue === currentDistance) {
+    isClick = false
+  }
+  if (isClick) return
+
   // 1.获取所有区域的offsetTops
   const els = Object.values(sectionEls.value)
   const values = els.map(el => el.offsetTop)
