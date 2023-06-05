@@ -8,7 +8,7 @@
     </router-view>
     <!-- <tab-bar/> -->
     <!-- 方法一：隐藏底部导航栏 -->
-    <tab-bar v-if="!route.meta.hideTabBar"></tab-bar>
+    <tab-bar v-show="!route.meta.hideTabBar"></tab-bar>
     <loading/>
 
   </div>
