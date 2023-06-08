@@ -3,7 +3,7 @@
 
 ## 项目结构
 
-![](https://secure2.wostatic.cn/static/8bSwSCaSj2tXFzUW7BiXcv/image.png?auth_key=1686143145-4LQ3ZVnADxEXAVHMVefrzD-0-74fbc8ad812e7c1452e36d2e70bbca6b)
+![](https://nevermore-picbed-1304219157.cos.ap-guangzhou.myqcloud.com/image_1vDR4XntPq.png)
 
 ## CSS样式重置
 
@@ -318,7 +318,7 @@ const route = useRoute()
 
 ### 搜索框实现
 
-![](https://secure2.wostatic.cn/static/oEZrMXDMmUdYkYRuuN4h6Q/image.png?auth_key=1686143145-sG5hxU6audwjjHnXNzDeGW-0-fae73452ee962fe3b2a6054ce63c64a8)
+![](https://nevermore-picbed-1304219157.cos.ap-guangzhou.myqcloud.com/image_orXjUvteaK.png)
 
 使用Vant组件库的`<vant-search>`组件
 
@@ -352,7 +352,7 @@ const route = useRoute()
 
 ### Tab标签页数据切换实现
 
-![](https://secure2.wostatic.cn/static/xxhrAa8K38rzphruCKyCcg/image.png?auth_key=1686143145-gvgRWyCyZbBkCJ285Su9BW-0-2ad0548f03641b06f3dd38a544839000)
+![](https://nevermore-picbed-1304219157.cos.ap-guangzhou.myqcloud.com/image_o7FD3_PSr_.png)
 
 使用Vant组件库的`<vant-tabs>`组件
 
@@ -534,7 +534,7 @@ export function getCityAll() {
 
 ### 城市列表索引栏及热门实现
 
-![](https://secure2.wostatic.cn/static/d76SNawVitR1chph8jm6VH/image.png?auth_key=1686143145-dDFj7mwGjLeW7xBWjCB7od-0-85f85efcc020e747bf59fe0a5dc4b172)
+![](https://nevermore-picbed-1304219157.cos.ap-guangzhou.myqcloud.com/image_ALrrk9QeGM.png)
 
 使用Vant组件库的`<vant-tabs>`组件，将功能封装到`city-group`组件。`index-list`+`computed()`属性实现动态城市列表映射。通过`list.unshif("#")`添加热门索引。
 
@@ -654,7 +654,7 @@ const indexList = computed(() => {
 
 ## 首页日期选择实现
 
-![](https://secure2.wostatic.cn/static/6ZT2QMxyKQet4CBFQxrHUZ/image.png?auth_key=1686143162-3ZhpQ3j9fNtHdcUS9GfD38-0-2272755faf0472d41d9737b1ee386324)
+![](https://nevermore-picbed-1304219157.cos.ap-guangzhou.myqcloud.com/image_RYoFN6njZu.png)
 
 ### 日期格式化
 
@@ -680,7 +680,7 @@ export function getDiffDays(startDate, endDate){
 
 ### 动态显示日期范围及日历组件
 
-![](https://secure2.wostatic.cn/static/w74W8szAhpEcbvQTr23mJb/image.png?auth_key=1686143165-22S4JgV6LKwdGQ9YGn2dfC-0-f0582700eca2b961b56f52462e3ab494)
+![](https://nevermore-picbed-1304219157.cos.ap-guangzhou.myqcloud.com/image_8wBOSxCNq-.png)
 
 使用Vant 中`<van-calendar>`实现日历组件，停留天数计算使用封装工具`getDiffDays`
 
@@ -838,7 +838,7 @@ export function getDiffDays(startDate, endDate){
 
 发送网络请求从服务器获取数据，以下有2种思路（传统结构和分层结构）
 
-![](https://secure2.wostatic.cn/static/8QLg2Q8ERyH3CeX5jtVTQm/image.png)
+![](https://nevermore-picbed-1304219157.cos.ap-guangzhou.myqcloud.com/image_XKJT-kANF8.png)
 
 ### 传统结构（不建议）
 
@@ -998,9 +998,7 @@ homeStore.fetchHotSuggestData()
 
 ## 首页搜索按钮实现
 
-![](https://secure2.wostatic.cn/static/mzgV6XkVrBszbDzbVV6oxC/image.png)
-
-
+![](https://nevermore-picbed-1304219157.cos.ap-guangzhou.myqcloud.com/image_cVj1v327jL.png)
 
 ### 搜索按钮样式实现
 
@@ -1126,11 +1124,9 @@ const route = useRoute()
 
 ```
 
-
-
 ## 首页分类菜单实现
 
-![](https://secure2.wostatic.cn/static/iaW2g1owSjZNdoJF4xvEot/image.png)
+![](https://nevermore-picbed-1304219157.cos.ap-guangzhou.myqcloud.com/image_xMgheAWf-X.png)
 
 ### 封装网络请求获取数据
 
@@ -1232,11 +1228,9 @@ const { categories } = storeToRefs(homeStore)
 
 ```
 
-
-
 ## 热门精选列表不同类型展示
 
-![](https://secure2.wostatic.cn/static/5AkgUvVzxtuptRiVymrxtu/image.png)
+![](https://nevermore-picbed-1304219157.cos.ap-guangzhou.myqcloud.com/image_uS1yVM9to7.png)
 
 ### 封装网络请求获取数据
 
@@ -1351,7 +1345,7 @@ const { houseList } = storeToRefs(homeStore)
 
 类型一
 
-![](https://secure2.wostatic.cn/static/LW5CaK7NZhWjuCRUtPNfA/image.png)
+![](https://nevermore-picbed-1304219157.cos.ap-guangzhou.myqcloud.com/image_ARyfBQP4yJ.png)
 
 ```Vue
 // house-item-type1
@@ -1442,7 +1436,7 @@ const itemScore = computed(() => {
 
 ```
 
-![](https://secure2.wostatic.cn/static/ee5jgQ5mrebjtynbtQQGZ/image.png)
+![](https://nevermore-picbed-1304219157.cos.ap-guangzhou.myqcloud.com/image_ab5bxtuwbs.png)
 
 类型二
 
@@ -1748,7 +1742,7 @@ export default function useScroll(elRef){
 
 ## 搜索工具栏的封装和实现
 
-![](https://secure2.wostatic.cn/static/tk1S2vkfEEkJ5JCKTp5mY1/image.png)
+![](https://nevermore-picbed-1304219157.cos.ap-guangzhou.myqcloud.com/image_JEJMwuyKUS.png)
 
 ### 搜索框滚动显示控制
 
@@ -1970,7 +1964,7 @@ export const useMainStore = defineStore("main", {
 
 ## Loding数据加载实现
 
-![](https://secure2.wostatic.cn/static/h22bT8uEATjRqMpV2uW74w/image.png)
+![](https://nevermore-picbed-1304219157.cos.ap-guangzhou.myqcloud.com/image_65AZFHeNdb.png)
 
 ### 搭建loading页面组件
 
@@ -2140,7 +2134,7 @@ class MyRequest {
 
 ### 详情页轮播图实现
 
-![](https://secure2.wostatic.cn/static/wzUr39qtMNRXbxpQr43uCL/image.png)
+![](https://nevermore-picbed-1304219157.cos.ap-guangzhou.myqcloud.com/image_HdVTi_YZMr.png)
 
 使用Vant组件库的`<van-swipe>`，并做进一步封装
 
@@ -2226,7 +2220,7 @@ const onClickLeft = () => {
 
 ### 自定义轮播图指示器
 
-![](https://secure2.wostatic.cn/static/5sgLxwxVttWcMmVvJEiJX/image.png)
+![](https://nevermore-picbed-1304219157.cos.ap-guangzhou.myqcloud.com/image_vgR0Cq8QtL.png)
 
 预处理分类数据，格式如：`{"2": [item1, item2, item3 ...], "4": [itemx, itemy, itemz ...], "9": [itema, itemb, itemc ...]}`，`"2"`代表卧室`id`
 
@@ -2341,7 +2335,7 @@ const getCategoryIndex = (item) => {
 
 ### 详情页顶部房屋信息展示
 
-![](https://secure2.wostatic.cn/static/3cXK53NfSuyCbnFays2Nqp/image.png)
+![](https://nevermore-picbed-1304219157.cos.ap-guangzhou.myqcloud.com/image_fQt-F5ARFl.png)
 
 子组件使用`defineProps`从组件中获取数据，父组件`detail.vue`在使用子组件时传值（从`mainPart.topModule`获取值传给`topInfos`）
 
@@ -2458,7 +2452,7 @@ defineProps({
 
 ### 内容详情区域插槽组件封装
 
-![](https://secure2.wostatic.cn/static/eYXiSGr8aZnaAwGw9hezwb/image.png)
+![](https://nevermore-picbed-1304219157.cos.ap-guangzhou.myqcloud.com/image_FXeWN43dHG.png)
 
 使用插槽封装公共组件，以便更多的内容详情区域使用（如房屋设施展示，房东介绍展示，热门评论展示等，这里只写房屋设施展示，主要是HTML和CSS的搭建）
 
@@ -2718,7 +2712,7 @@ const onClickLeft = () => {
 
 ## 百度地图SDK集成和使用
 
-![](https://secure2.wostatic.cn/static/aRYjF5BFteUnoxiXY2Nyj9/image.png)
+![](https://nevermore-picbed-1304219157.cos.ap-guangzhou.myqcloud.com/image_RncVLCrlTy.png)
 
 ### 注册百度地图开发者平台
 
@@ -2726,7 +2720,8 @@ const onClickLeft = () => {
 
 1. 创建应用获取AK
 
-    ![](https://secure2.wostatic.cn/static/eq5WQtvRQaq3RUsqNV5uY7/image.png)
+![](https://nevermore-picbed-1304219157.cos.ap-guangzhou.myqcloud.com/image_Hvhz1liDSB.png)
+
 2. 在vue3的`index.html`中引用百度地图API文件
 
 ```JavaScript
@@ -2790,7 +2785,7 @@ onMounted(() => {
 
 ## Tab标签页滚动和锚点交互实现
 
-![](https://secure2.wostatic.cn/static/urVDRRWk9jrer6FxwjWGuz/image.png)
+![](https://nevermore-picbed-1304219157.cos.ap-guangzhou.myqcloud.com/image_G-5K496l1d.png)
 
 在上文城市分组列表使用过Vant组件库中的`<van-tabs>`组件，这里自定义一个标签页组件
 
